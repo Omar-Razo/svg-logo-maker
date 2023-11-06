@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
-import { validateHTMLColorName, validateHTMLColorHex } from "validate-color";
+import validate from "validate-color";
+const { validateHTMLColorHex, validateHTMLColorName } = validate
 
 
 const svgGenerator = () => inquirer.prompt([
@@ -9,7 +10,7 @@ const svgGenerator = () => inquirer.prompt([
         name: 'text',
         validate(answer) {
             const regex = /[a-zA-z0-9_]{3}/
-            return answer.length <= 3 && regex.test(answer) ? true : 'Please choose only 3 characters'
+            return answer.length <= 3 ? true : 'Please choose only 3 characters'
         }
     },
     {
