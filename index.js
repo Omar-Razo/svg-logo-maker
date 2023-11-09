@@ -6,6 +6,7 @@ import { Circle, Triangle, Square } from './lib/shapes'
 const { validateHTMLColorHex, validateHTMLColorName } = validate
 
 
+
 const svgGenerator = () => inquirer.prompt([
     {
         type: 'input',
@@ -54,6 +55,7 @@ const svgGenerator = () => inquirer.prompt([
     .then((answers) => {
     //incomplete
     }).catch((err) => console.error(err));
+
 
 
 // inquirer set up
