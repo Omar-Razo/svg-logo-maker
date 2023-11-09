@@ -1,9 +1,14 @@
 import inquirer from "inquirer";
 import validate from "validate-color";
-import Text from './lib/text'
-import { Circle, Triangle, Square } from './lib/shapes'
+import { Text } from './lib/text.js'
+import { Circle, Triangle, Square } from './lib/shapes.js'
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from "url";
 
 const { validateHTMLColorHex, validateHTMLColorName } = validate
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 
@@ -53,8 +58,35 @@ const svgGenerator = () => inquirer.prompt([
     }
     ])
     .then((answers) => {
-    //incomplete
-    }).catch((err) => console.error(err));
+        let svgShape;
+        const svgText = new Text(answers.text, answers.textColor)
+
+        switch (answers.shape) {
+            case 'Circle':
+                svgShape = new Circle(answers.shapeColor, 50);
+                break
+            case 'Triangle':
+                svgShape = new Triangle(answers.shapeColor);
+                break
+            case 'Square':
+                svgShape = new Square(answers.shapeColor, 50)
+                break
+        };
+
+        return `<svg version = '1.1' width="300" height="200">
+        
+        ${svgShape.render()}
+
+        ${svgText.render()}
+
+        </svg>`
+    })
+    .then((svg) => {
+        fs.writeFile(path.join(__dirname, '.', 'examples', 'logo.svg'), svg, (err) => 
+                err ? console.error(err) : console.log('Generated logo.svg.')
+            )
+    })
+    .catch((err) => console.error(err));
 
 
 
