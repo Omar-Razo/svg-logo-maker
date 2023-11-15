@@ -1,14 +1,9 @@
-import inquirer from "inquirer";
-import validate from "validate-color";
-import { Text } from './lib/text.js'
-import { Circle, Triangle, Square } from './lib/shapes.js'
-import fs from 'fs'
-import path from 'path'
-import { fileURLToPath } from "url";
-
-const { validateHTMLColorHex, validateHTMLColorName } = validate
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const inquirer = require('inquirer')
+const { validateHTMLColorHex, validateHTMLColorName } = require('validate-color')
+const Text = require('./lib/text.js')
+const { Circle, Triangle, Square } = require('./lib/shapes.js')
+const fs = require('fs')
+const path = require('path')
 
 
 
@@ -63,17 +58,17 @@ const svgGenerator = () => inquirer.prompt([
 
         switch (answers.shape) {
             case 'Circle':
-                svgShape = new Circle(answers.shapeColor, 50);
+                svgShape = new Circle(answers.shapeColor, 80);
                 break
             case 'Triangle':
                 svgShape = new Triangle(answers.shapeColor);
                 break
             case 'Square':
-                svgShape = new Square(answers.shapeColor, 50)
+                svgShape = new Square(answers.shapeColor, 100)
                 break
         };
 
-        return `<svg version = '1.1' width="300" height="200">
+        return `<svg version = '1.1' width="300" height="200" xmlns="http://www.w3.org/2000/svg">
         
         ${svgShape.render()}
 
@@ -87,13 +82,5 @@ const svgGenerator = () => inquirer.prompt([
             )
     })
     .catch((err) => console.error(err));
-
-
-
-// inquirer set up
-// Q1: text (max 3 characters)
-// Q2: text color (keyword or hexadecimal)
-// Q3: shape type
-// Q4: shape color (keyword or hexadecimal)
 
 svgGenerator();

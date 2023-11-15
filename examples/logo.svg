@@ -1,7 +1,7 @@
-<svg version = '1.1' width="300" height="200">
+<svg version = '1.1' width="300" height="200" xmlns="http://www.w3.org/2000/svg">
         
-        <polygon points="150,50 100,150 200,150" fill="darkslategray" />
+        <rect x="100" y="50" width="100" height="100" fill="#32322e" />
 
-        <text x="150" y="125" font-size="60" text-anchor="middle" fill="darkorange">SNP</text>
+        <text x="50%" y="50%" font-size="60" text-anchor="middle" dominant-baseline="middle" fill="darkorange">NPR</text>
 
         </svg>
