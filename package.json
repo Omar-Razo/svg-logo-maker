@@ -1,7 +1,6 @@
 {
   "name": "svg-logo-maker",
   "version": "1.0.0",
-  "type": "module",
   "description": "svg generator using inquirer prompts",
   "main": "index.js",
   "directories": {
@@ -30,7 +29,7 @@
     "jest": "^29.7.0"
   },
   "dependencies": {
-    "validate-color": "^2.2.4",
-    "inquirer": "^9.2.11"
+    "inquirer": "8.2.4",
+    "validate-color": "^2.2.4"
   }
 }
